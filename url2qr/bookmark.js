@@ -17,7 +17,7 @@
 		'top:0',
 		'right:0'
 	].join(';');
-	c.innerHTML = '×';
+	c.innerHTML = 'x';
 	c.style.cssText = [
 		'position:absolute',
 		'left:-25px',

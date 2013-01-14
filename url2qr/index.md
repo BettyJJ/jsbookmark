@@ -6,7 +6,7 @@ __方法一：__
 
 __方法二：__
 
-复制一下内容保持到收藏夹
+复制以下内容保存到收藏夹
 
 <p><textarea readonly="readonly" onmouseover="this.select();" onfoucs="this.select();">javascript:void(function(){var%20d=document,a='setAttribute',s=d.createElement('script');s[a]('type','text/javascript');s[a]('src','http://yqtaku.github.com/jsbookmark/url2qr/bookmark.js');d.head.appendChild(s);})();</textarea></p>
 

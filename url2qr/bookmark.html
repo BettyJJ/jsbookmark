@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>URL 2 QR Code</title>
+	<style type="text/css">
+	body {
+		margin: 0;
+		font: 15px Arial, sans-serif;
+	}
+	input {
+		display: block;
+		width: 190px;
+		height: 25px;
+		padding: 0 5px;
+		margin: 0 auto;
+		border: 1px solid #ccc;
+		background: #fff;
+		outline: none;
+		color: #333;
+		font: 15px Arial, sans-serif;
+	}
+	#input {
+		overflow: hidden;
+		width: 200px;
+		margin: 10px auto;
+	}
+	#inputUrl {
+		float: left;
+		width: 100px;
+	}
+	#inputBtn {
+		display: block;
+		float: right;
+		width: 70px;
+		height: 27px;
+		background: #eee;
+		padding: 0;
+		border: none;
+		color: #aaa;
+		text-align: center;
+		line-height: 25px;
+		cursor: pointer;
+		outline: none;
+	}
+	#inputBtn:hover {
+		background: #e9e9e9;
+	}
+	#output {
+		padding-top: 10px;
+		margin-top: 10px;
+		border-top: 1px dotted #bbb;
+	}
+	#outputImg {
+		display: block;
+		width: 200px;
+		height: 200px;
+		margin: 0px auto;
+	}
+	#footer {
+		color: #e4e4e4;
+		text-align: center;
+		font-size: 11px;
+	}
+	</style>
+</head>
+<body>
+<div class="wrap">
+	<div id="input">
+		<input id="inputUrl" type="text" placeholder="input url">
+		<button id="inputBtn">GO</button>
+	</div>
+	<div id="output">
+		<input id="outputImgUrl" type="text">
+		<img id="outputImg" src="placeholder.png">
+	</div>
+	<div id="footer">url2qr | coded by yqtaku</div>
+</div>
+<script type="text/javascript">
+(function(window){
+	window.onload = function(){
+		var url = 'https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|4&chl=';
+			inputUrl = $('inputUrl'),
+			inputBtn = $('inputBtn'),
+			outputImg = $('outputImg'),
+			outputImgUrl = $('outputImgUrl');
+		inputUrl.focus();
+		inputUrl.onkeydown = function(e) {
+			if (e.keyCode === 13) 
+				inputBtn.click();
+		}
+		inputBtn.onclick = function() {
+			url += inputUrl.value;
+			outputImgUrl.value = url;
+			outputImg.setAttribute('src',url);
+			outputImgUrl.focus();
+			outputImgUrl.select();
+		}
+	};
+	function $ (id) {
+		return document.getElementById(id);
+	};
+})(window);
+
+</script>
+</body>
+</html>

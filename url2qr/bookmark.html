@@ -4,101 +4,101 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>URL 2 QR Code</title>
 	<style type="text/css">
-	body {
-		margin: 0;
-		font: 15px Arial, sans-serif;
-	}
-	input {
-		display: block;
-		width: 190px;
-		height: 25px;
-		padding: 0 5px;
-		margin: 0 auto;
-		border: 1px solid #ccc;
-		background: #fff;
-		outline: none;
-		color: #333;
-		font: 15px Arial, sans-serif;
-	}
-	#input {
-		overflow: hidden;
-		width: 200px;
-		margin: 10px auto;
-	}
-	#inputUrl {
-		float: left;
-		width: 100px;
-	}
-	#inputBtn {
-		display: block;
-		float: right;
-		width: 70px;
-		height: 27px;
-		background: #eee;
-		padding: 0;
-		border: none;
-		color: #aaa;
-		text-align: center;
-		line-height: 25px;
-		cursor: pointer;
-		outline: none;
-	}
-	#inputBtn:hover {
-		background: #e9e9e9;
-	}
-	#output {
-		padding-top: 10px;
-		margin-top: 10px;
-		border-top: 1px dotted #bbb;
-	}
-	#outputImg {
-		display: block;
-		width: 200px;
-		height: 200px;
-		margin: 0px auto;
-	}
-	#footer {
-		color: #e4e4e4;
-		text-align: center;
-		font-size: 11px;
-	}
+	body { margin: 0; font: 15px Arial, sans-serif; }
+
+	input { display: block; width: 188px; height: 25px; padding: 0 5px; margin: 0 auto; border: 1px solid #ccc; background: #fff; outline: none; color: #333; font: 15px Arial, sans-serif; }
+
+	button { display: block; float: right; width: 70px; height: 27px; background: #eee; padding: 0; border: none; color: #aaa; text-align: center; line-height: 25px; cursor: pointer; outline: none; }
+	button:hover { background: #e9e9e9; }
+
+	.input { overflow: hidden; width: 200px; margin: 10px auto; }
+
+	#inputUrl { float: left; width: 100px; }
+
+	.output { position: relative; width: 200px; height: 230px; padding-top: 10px; margin: 10px auto 0; border-top: 1px dotted #bbb; }
+	
+	#result { position: absolute; left: 0; top: 10px; }
+
+	#resultImg { display: block; width: 200px; height: 200px; margin: 0px auto; border: 1px solid #fff; }
+
+	#loading { display: none; text-align: center; line-height: 200px; color: #bbb; }
+
+	.footer { color: #e4e4e4; text-align: center; font-size: 11px; }
 	</style>
 </head>
 <body>
 <div class="wrap">
-	<div id="input">
+	<div class="input">
 		<input id="inputUrl" type="text" placeholder="input url">
 		<button id="inputBtn">GO</button>
 	</div>
-	<div id="output">
-		<input id="outputImgUrl" type="text">
-		<img id="outputImg" src="placeholder.png">
+	<div class="output">
+		<div id="result">
+			<input id="resultImgUrl" type="text">
+			<img id="resultImg" src="placeholder.png">
+		</div>
+		<div id="loading">
+			loading...
+		</div>
 	</div>
-	<div id="footer">url2qr | coded by yqtaku</div>
+	<div class="footer">url2qr | coded by yqtaku</div>
 </div>
 <script type="text/javascript">
 (function(window){
 	window.onload = function(){
-		var url = 'https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|4&chl=';
-			inputUrl = $('inputUrl'),
-			inputBtn = $('inputBtn'),
-			outputImg = $('outputImg'),
-			outputImgUrl = $('outputImgUrl');
+		var url = 'https://chart.googleapis.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=L|2&chl=';
+			inputUrl = T.$('inputUrl'),
+			inputBtn = T.$('inputBtn'),
+			resultImg = T.$('resultImg'),
+			resultImgUrl = T.$('resultImgUrl'),
+			result = T.$('result'),
+			loading = T.$('loading');
 		inputUrl.focus();
-		inputUrl.onkeydown = function(e) {
-			if (e.keyCode === 13) 
-				inputBtn.click();
-		}
-		inputBtn.onclick = function() {
-			url += inputUrl.value;
-			outputImgUrl.value = url;
-			outputImg.setAttribute('src',url);
-			outputImgUrl.focus();
-			outputImgUrl.select();
-		}
+		T.addEvent(inputUrl, 'keydown', function(e){
+			(e.keyCode === 13) && inputBtn.click();
+		});
+		T.addEvent(inputBtn, 'click', function(e){
+			T.show(loading);
+			var newUrl = url + inputUrl.value;
+			resultImgUrl.value = newUrl;
+			resultImg.setAttribute('src', newUrl);
+			resultImgUrl.focus();
+			resultImgUrl.select();
+		});
+		T.addEvent(T.$tag('input'), 'mouseover', function(e) {
+			e.target.focus();
+			e.target.select();
+		});
 	};
-	function $ (id) {
-		return document.getElementById(id);
+	var T = {
+		$: function (id) {
+			return document.getElementById(id);
+		},
+		$tag: function(tag) {
+			return document.getElementsByTagName(tag);
+		},
+		show: function (obj) {
+			obj.style.display = 'block';
+		},
+		addEvent: function(target, event, callback) {
+			if (window.addEventListener) {
+				if (target.length >= 1 && target != window) {
+					for (var i = target.length - 1; i >= 0; i--) {
+						target[i]['addEventListener'](event, callback, false);
+					};
+				} else {
+					target['addEventListener'](event, callback, false);
+				}
+			} else if (window.attachEvent) {
+				if (target.length >= 1 && target != window) {
+					for (var i = target.length - 1; i >= 0; i--) {
+						target[i]['attachEvent']('on' + event, callback);
+					};
+				} else {
+					target['attachEvent']('on' + event, callback);
+				}
+			}
+		}
 	};
 })(window);
 

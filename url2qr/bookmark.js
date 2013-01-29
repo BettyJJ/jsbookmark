@@ -10,12 +10,13 @@
 		'width:240px',
 		'height:310px',
 		'background:#fff',
-		'box-shadow:0 0 10px #555',
-		'border-left:1px solid #999',
-		'border-bottom:1px solid #999',
+		'border-bottom:1px solid #CCCCCC',
+		'border-left:1px solid #CCCCCC',
+		'box-shadow:0 0 10px rgba(0, 0, 0, 0.4)',
 		'position:fixed',
 		'top:0',
-		'right:0'
+		'right:0',
+		'z-index:9999'
 	].join(';');
 	c.innerHTML = 'x';
 	c.style.cssText = [
@@ -27,9 +28,10 @@
 		'background:#fff',
 		'font:15px/25px Arial, sans-serif',
 		'text-align:center',
-		'box-shadow:-2px 2px 3px #999',
+		'box-shadow:-2px 2px 3px rgba(0,0,0,0.4)',
 		'color:#888',
-		'cursor:pointer'
+		'cursor:pointer',
+		'z-index:9999'
 	].join(';');
 	d.appendChild(i);
 	d.appendChild(c);

@@ -71,10 +71,10 @@
 			e.target.select();
 		});
 		//process the current url
-		var current-url = window.location.hash;
-		current-url = current-url.substring(1);
-		current-url = encodeURIComponent(current-url);
-		newUrl = url + current-url;
+		var currentUrl = window.location.hash;
+		currentUrl = currentUrl.substring(1);
+		currentUrl = encodeURIComponent(currentUrl);
+		newUrl = url + currentUrl;
 		resultImgUrl.value = newUrl;
 		resultImg.setAttribute('src', newUrl);
 	};

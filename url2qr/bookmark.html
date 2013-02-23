@@ -73,7 +73,7 @@
 		//process the current url
 		var currentUrl = window.location.hash;
 		currentUrl = currentUrl.substring(1);
-		currentUrl = encodeURIComponent(currentUrl);
+		currentUrl = decodeURIComponent(currentUrl);
 		newUrl = url + currentUrl;
 		resultImgUrl.value = newUrl;
 		resultImg.setAttribute('src', newUrl);

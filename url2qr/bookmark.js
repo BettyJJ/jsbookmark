@@ -5,7 +5,7 @@
 	i.setAttribute('width', '240');
 	i.setAttribute('height', '310');
 	i.style.cssText = ';border:none';
-	i.setAttribute('src', 'http://yqtaku.github.com/jsbookmark/url2qr/bookmark.html');
+	i.setAttribute('src', 'http://bettyjj.github.com/jsbookmark/url2qr/bookmark.html#'+encodeURIComponent(window.location.href));
 	d.style.cssText = [
 		'width:240px',
 		'height:310px',

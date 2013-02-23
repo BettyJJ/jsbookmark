@@ -70,6 +70,13 @@
 			e.target.focus();
 			e.target.select();
 		});
+		//process the current url
+		var currentUrl = window.location.hash;
+		currentUrl = currentUrl.substring(1);
+		currentUrl = decodeURIComponent(currentUrl);
+		newUrl = url + currentUrl;
+		resultImgUrl.value = newUrl;
+		resultImg.setAttribute('src', newUrl);
 	};
 	var T = {
 		$: function (id) {
